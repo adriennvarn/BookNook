@@ -22,7 +22,7 @@ Database of user reviews for books. Information on books taken from a free open 
 
 A loose outline of the pages and the components in each one.
 
-- Main page
+- Home page
 
   - Navbar
 
@@ -50,24 +50,24 @@ A loose outline of the pages and the components in each one.
 
       - summary and full review
 
-  - add book (button opens to menu)
+- add book page
 
-    - search by title or author on a book API
+  - search by title or author on a book API
 
-    - display top 3 results with:
+  - display top 3 results with:
 
-      - title
+    - title
 
-      - author
+    - author
 
-      - summary
+    - summary
 
-      - cover if available
+    - cover if available
 
-    - on select entry (or manual):
+  - on select entry (or manual):
 
-      - autofill available information from book API
+    - autofill available information from book API
 
-      - allow manual edit / entry
+    - allow manual edit / entry
 
-      - select rating, enter review summary and full review
+    - select rating, enter review summary and full review
