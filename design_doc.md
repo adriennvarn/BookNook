@@ -6,7 +6,7 @@ Capstone Project 1
 
 Database of user reviews for books. Information on books taken from a free open API. Demonstrates all required features:
 
-- **External API Fetch:** fetch book information from external API when adding to database
+- **External API Fetch:** fetch book information from Open Library API when adding review
 
 - **State Management:** Database is stored with local storage, itself a state tool, including error handling and display logic.
 
