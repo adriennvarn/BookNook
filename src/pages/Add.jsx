@@ -10,7 +10,6 @@ export default function Add() {
             <button>Manual entry</button>
             {/* Once API search result is selected (or manual entry), pass results to... */}
             <form id="book-form" className="hidden">
-                <input id="cover" type="file" />
                 <input type="text" placeholder="title" />
                 <input type="text" placeholder="author" />
                 <p>And so on and so forth...</p>
