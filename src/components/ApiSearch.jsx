@@ -45,18 +45,18 @@ export default function ApiSearch() {
             params.append("author", searchData.author)
         }
         try {
+            if (loading) { return }
             const result = await fetchData({}, `${SEARCH_URL}?${params}`)
             result.docs.map((book) => {
                 const newBook = {
                     id: crypto.randomUUID(),
                     title: book.title,
-                    author: book.author_name[0][0],  // author is double nested
+                    author: book.author_name[0],
                     published: book.first_publish_year,
                     coverId: book.cover_i
                 }
                 setBooks((prev) => [...prev, newBook])
             })
-            console.log(books)
         } catch (err) {
             console.error("Fetch failed:", err)
         }
@@ -73,7 +73,7 @@ export default function ApiSearch() {
             </div>
             <div id="results" className="hidden">
                 {books.map((book) => (
-                    <Result key={book.id} book={book}/>
+                    <Result key={book.id} book={book} />
                 ))}
             </div>
         </>
