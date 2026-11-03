@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 function useFetchData(url, options = {}) {
     const [data, setData] = useState([])
@@ -6,7 +6,7 @@ function useFetchData(url, options = {}) {
     const [error, setError] = useState(null)
 
     // get data automatically on useFetchData call
-    const fetchData = () => {
+    const fetchData = useCallback(() => {
         setLoading(true)
         console.log("Fetching data from: ", url)
 
@@ -21,10 +21,10 @@ function useFetchData(url, options = {}) {
                 setError(err.message)
             })
             .finally(() => setLoading(false))
-    }
+    }, [url, options])
 
     // fetch data on component load
-    useEffect(() => fetchData(url), [url])
+    useEffect(() => fetchData(), [fetchData])
 
     return { data, loading, error, refetch: fetchData }
 }

@@ -1,12 +1,16 @@
 import { useState } from "react"
 import Result from "../components/Result"
-import { useFetchData } from "../hooks/useFetchData"
+import { useFetchDataMutation } from "../hooks/useFetchData"
 
 const SEARCH_URL = "https://openlibrary.org/search.json"
-const HEADERS = { "User-Agent": "MyAppName/1.0 (myemail@example.com)" }
 
 export default function ApiSearch() {
     /* Pull up and display results from API */
+
+    // fetch hook to call within submit function
+    const { execute: fetchData, data, loading, error } = useFetchDataMutation(SEARCH_URL)
+
+    const [books, setBooks] = useState([])
 
     // template item
     const blankSearch = {
@@ -28,8 +32,10 @@ export default function ApiSearch() {
         }))
     }
 
-    const handleSubmit = (e) => {
+    // call fetch on submission
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        setBooks([])
         const params = new URLSearchParams()
         params.append("limit", 3)
         if (searchData.title) {
@@ -38,22 +44,37 @@ export default function ApiSearch() {
         if (searchData.author) {
             params.append("author", searchData.author)
         }
-        const { data } = useFetchData(`${SEARCH_URL}?${params}`, { headers: HEADERS })
-        console.log(data)
+        try {
+            const result = await fetchData({}, `${SEARCH_URL}?${params}`)
+            result.docs.map((book) => {
+                const newBook = {
+                    id: crypto.randomUUID(),
+                    title: book.title,
+                    author: book.author_name[0][0],  // author is double nested
+                    published: book.first_publish_year,
+                    coverId: book.cover_i
+                }
+                setBooks((prev) => [...prev, newBook])
+            })
+            console.log(books)
+        } catch (err) {
+            console.error("Fetch failed:", err)
+        }
     }
 
     return (
         <>
             <div>
                 <form id="api-search-form" onSubmit={handleSubmit}>
-                    <input type="text" name="title" placeholder="Title" />
-                    <input type="text" name="author" placeholder="Author" />
+                    <input type="text" name="title" placeholder="Title" value={searchData.title} onChange={handleChange} />
+                    <input type="text" name="author" placeholder="Author" value={searchData.author} onChange={handleChange} />
                     <button type="submit">Search</button>
                 </form>
             </div>
             <div id="results" className="hidden">
-                {/* foreach result: */}
-                <Result />
+                {books.map((book) => (
+                    <Result key={book.id} book={book}/>
+                ))}
             </div>
         </>
     )
