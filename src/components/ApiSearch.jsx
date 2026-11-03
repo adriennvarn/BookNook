@@ -71,7 +71,9 @@ export default function ApiSearch() {
                     <button type="submit">Search</button>
                 </form>
             </div>
-            <div id="results" className="hidden">
+            <div id="search-loading" className={`${loading ? "" : "hidden"}`}><p>Loading...</p></div>
+            <div id="search-error" className={`${error ? "": "hidden"}`}><p>Error: {error}</p></div>
+            <div id="results" className={`${data ? "" : "hidden"}`}>
                 {books.map((book) => (
                     <Result key={book.id} book={book} />
                 ))}
