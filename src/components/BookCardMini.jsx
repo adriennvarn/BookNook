@@ -1,5 +1,7 @@
 export default function BookCardMini() {
     /* Mini card to display in BookList. Only shows cover, title and author, stars, summary of review. */
+
+    /* NOTE that image will have coverId OR imageSrc but not both*/
     return (
         <div>
             <img src={null} alt="Blank image"/>
