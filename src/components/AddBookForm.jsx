@@ -1,27 +1,32 @@
 import { BookContext } from "../contexts/BookContext"
 import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function AddBookForm() {
     /* Form to add a book and review to the database */
 
     const { addBook, selectedBook } = useContext(BookContext)
+    const navigate = useNavigate()
 
-    // template item
-    const blankEntry = {
+    // template items
+    const blankBook = {
         title: "",
         author: "",
         published: "",
         coverId: null,
         imageSrc: "",
+    }
+    const blankReview = {
         stars: 5,
         reviewSummary: "",
         review: "",
     }
 
     // establish state
-    const [entryData, setEntryData] = useState(selectedBook ? { ...selectedBook, stars: 5 } : {
-        ...blankEntry
-    })
+    const [entryData, setEntryData] = useState(selectedBook ?
+        { ...selectedBook, ...blankReview } :
+        { ...blankBook, ...blankReview }
+    )
 
     // update running entryData as values change
     const handleChange = (e) => {
@@ -36,7 +41,7 @@ export default function AddBookForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
         addBook(entryData)
-        setEntryData(blankEntry)
+        navigate("/")
     }
 
     return (
