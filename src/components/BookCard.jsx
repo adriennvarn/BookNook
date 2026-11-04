@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 export default function BookCard({ book }) {
     /* Mini card to display in BookList. Only shows cover, title and author, stars, summary of review. */
 
@@ -6,8 +8,14 @@ export default function BookCard({ book }) {
     const COVER_URL = "https://covers.openlibrary.org/b/id"
     const imageSrc = book.coverId ? `${COVER_URL}/${book.coverId}-M.jpg` : (book.imageSrc ? book.imageSrc : null)
 
+    const navigate = useNavigate()
+
+    const handleClick = (e) => {
+        navigate(`/book/${book.id}`)
+    }
+
     return (
-        <div>
+        <div onClick={handleClick}>
             <img src={imageSrc} alt={`Cover of ${book.title}`} />
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
