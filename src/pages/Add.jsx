@@ -20,9 +20,7 @@ export default function Add() {
             </div>
             <button onClick={() => setManualEntry(true)}>Manual entry</button>
             {/* Once API search result is selected (or manual entry), pass results to... */}
-            <div className={`${selectedBook || manualEntry ? "" : "hidden"}`}>
-                <AddBookForm />
-            </div>
+            {selectedBook || manualEntry ? <AddBookForm /> : null}
         </>
     )
 }

@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 export default function AddBookForm() {
     /* Form to add a book and review to the database */
 
-    const { addBook } = useContext(BookContext)
+    const { addBook, selectedBook } = useContext(BookContext)
 
     // template item
     const blankEntry = {
@@ -13,13 +13,13 @@ export default function AddBookForm() {
         published: "",
         coverId: null,
         imageSrc: "",
-        stars: 1,
+        stars: 5,
         reviewSummary: "",
         review: "",
     }
 
     // establish state
-    const [entryData, setEntryData] = useState({
+    const [entryData, setEntryData] = useState(selectedBook ? { ...selectedBook, stars: 5 } : {
         ...blankEntry
     })
 
@@ -46,9 +46,11 @@ export default function AddBookForm() {
                 <input type="text" name="title" placeholder="Title" value={entryData.title} onChange={handleChange} />
                 <input type="text" name="author" placeholder="Author" value={entryData.author} onChange={handleChange} />
                 <input type="text" name="published" placeholder="Year published" value={entryData.published} onChange={handleChange} />
-                <input type="text" name="imageSrc" placeholder="Image Link" value={entryData.imageSrc} onChange={handleChange} />
-                <br/><br/>
-                <input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1"/>
+                <br />
+                <input type="text" name="imageSrc" placeholder="Image Link" value={entryData.imageSrc} onChange={handleChange}
+                    className={`${entryData.coverId ? "hidden" : ""}`} />
+                <br /><br />
+                <input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" />
                 <input type="text" name="reviewSummary" placeholder="Review Summary" value={entryData.reviewSummary} onChange={handleChange} />
                 <input type="text" name="review" placeholder="Review" value={entryData.review} onChange={handleChange} />
                 <button type="submit">Submit</button>
