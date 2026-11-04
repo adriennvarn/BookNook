@@ -41,6 +41,7 @@ export default function BookInfo() {
                 <p>{book.review}</p>
             </div>
             <button onClick={handleDelete}>Delete</button>
+            <button onClick={() => navigate(`/book/edit/${id}`)}>Update Review</button>
         </>
     )
 }

@@ -35,7 +35,6 @@ export default function AddBookForm() {
             ...prevData,
             [name]: value
         }))
-        // TODO if imageSrc is changed, attempt to load src preview every 1 second
     }
 
     const handleSubmit = (e) => {
