@@ -6,7 +6,7 @@ import AddBookForm from "../components/AddBookForm"
 
 export default function Add() {
 
-    const { selectedBook, addBook } = useContext(BookContext)
+    const { selectedBook } = useContext(BookContext)
     const [manualEntry, setManualEntry] = useState(false)
 
 
@@ -23,7 +23,6 @@ export default function Add() {
             <div className={`${selectedBook || manualEntry ? "" : "hidden"}`}>
                 <AddBookForm />
             </div>
-
         </>
     )
 }

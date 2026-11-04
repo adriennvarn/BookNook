@@ -4,15 +4,18 @@ import { useContext, useState } from "react"
 export default function AddBookForm() {
     /* Form to add a book and review to the database */
 
-    const { selectedBook, addBook } = useContext(BookContext)
+    const { addBook } = useContext(BookContext)
 
     // template item
     const blankEntry = {
         title: "",
         author: "",
-        published: 0,
+        published: "",
         coverId: null,
         imageSrc: "",
+        stars: 1,
+        reviewSummary: "",
+        review: "",
     }
 
     // establish state
@@ -27,11 +30,13 @@ export default function AddBookForm() {
             ...prevData,
             [name]: value
         }))
-        // TODO if imageSrc is changed, attempt to load src preview
+        // TODO if imageSrc is changed, attempt to load src preview every 1 second
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        addBook(entryData)
+        setEntryData(blankEntry)
     }
 
     return (
@@ -42,6 +47,10 @@ export default function AddBookForm() {
                 <input type="text" name="author" placeholder="Author" value={entryData.author} onChange={handleChange} />
                 <input type="text" name="published" placeholder="Year published" value={entryData.published} onChange={handleChange} />
                 <input type="text" name="imageSrc" placeholder="Image Link" value={entryData.imageSrc} onChange={handleChange} />
+                <br/><br/>
+                <input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1"/>
+                <input type="text" name="reviewSummary" placeholder="Review Summary" value={entryData.reviewSummary} onChange={handleChange} />
+                <input type="text" name="review" placeholder="Review" value={entryData.review} onChange={handleChange} />
                 <button type="submit">Submit</button>
             </form>
         </div>

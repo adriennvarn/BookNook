@@ -9,26 +9,34 @@ export function BookProvider({ children }) {
     // selected book, used for adding to db
     const [selectedBook, setSelectedBook] = useState(null)
 
-    function addBook(book, review) {
-        setBooks((prev) => [...prev, { book: book, review: review }])
-        setSelectedBook = null
+    function addBook(book) {
+        setBooks(prev => {
+            const currentArray = Array.isArray(prev) ? prev : []
+            return [...currentArray, book]
+        })
+        setSelectedBook(null)
     }
 
     function deleteBook(bookToDelete) {
-        setBooks((prev) => prev.filter(book => book.id != bookToDelete.id))
-        setSelectedBook = null
+        setBooks((prev) => {
+            const currentArray = Array.isArray(prev) ? prev : []
+            return currentArray.filter(book => (
+                book.id !== bookToDelete.id
+            ))
+        })
+        setSelectedBook(null)
     }
 
     function updateBook(bookToUpdate, newReview) {
-        setBooks((prev) => prev.map(book => book.id == bookToUpdate.id
-            ? { book: bookToUpdate, review: newReview }
-            : book
-        ))
-        setSelectedBook = null
+        setBooks((prev) => {
+            const currentArray = Array.isArray(prev) ? prev : []
+            return currentArray.map(book => book.id == bookToUpdate.id ? { ...book, review: newReview } : book)
+        })
+        setSelectedBook(null)
     }
 
     return (
-        <BookContext value={{books, selectedBook, setSelectedBook, addBook, deleteBook, updateBook}}>
+        <BookContext value={{ books, selectedBook, setSelectedBook, addBook, deleteBook, updateBook }}>
             {children}
         </BookContext>
     )
