@@ -40,7 +40,7 @@ export default function AddBookForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        addBook(entryData)
+        addBook({...entryData, id: crypto.randomUUID()})
         navigate("/")
     }
 
