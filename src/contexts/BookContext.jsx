@@ -8,6 +8,8 @@ export function BookProvider({ children }) {
     const [books, setBooks] = useLocalStorage("books")
     // selected book, used for adding to db
     const [selectedBook, setSelectedBook] = useState(null)
+    // set search to filter books by
+    const [search, setSearch] = useState("")
 
     function addBook(book) {
         setBooks(prev => {
@@ -36,7 +38,7 @@ export function BookProvider({ children }) {
     }
 
     return (
-        <BookContext value={{ books, selectedBook, setSelectedBook, addBook, deleteBook, updateBook }}>
+        <BookContext value={{ books, selectedBook, setSelectedBook, addBook, deleteBook, updateBook, search, setSearch }}>
             {children}
         </BookContext>
     )
