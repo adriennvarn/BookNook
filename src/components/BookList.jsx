@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { BookContext } from "../contexts/BookContext"
-import BookCardMini from "../components/BookCardMini"
+import BookCard from "./BookCard"
 import BookSearch from "../components/BookSearch"
 
 export default function BookList() {
@@ -11,7 +11,7 @@ export default function BookList() {
     return (
         <>
             <BookSearch />
-            {books.map(book => (<BookCardMini key={book.id} book={book} />))}
+            {books.map(book => (<BookCard key={book.id} book={book} />))}
         </>
     )
 }
