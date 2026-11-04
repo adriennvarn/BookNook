@@ -1,10 +1,15 @@
 import { BookContext } from "../contexts/BookContext"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 
 export default function BookSearch() {
     /* Menu for searching and filtering book database */
 
     const { search, setSearch } = useContext(BookContext)
+
+    // empty search on component load
+    useEffect(() => {
+        setSearch("")
+    }, [])
 
     return (
         <>
