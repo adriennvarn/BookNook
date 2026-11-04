@@ -29,10 +29,10 @@ export function BookProvider({ children }) {
         setSelectedBook(null)
     }
 
-    function updateBook(bookToUpdate, newReview) {
+    function updateBook(bookToUpdate) {
         setBooks((prev) => {
             const currentArray = Array.isArray(prev) ? prev : []
-            return currentArray.map(book => book.id == bookToUpdate.id ? { ...book, review: newReview } : book)
+            return currentArray.map(book => book.id == bookToUpdate.id ? bookToUpdate : book)
         })
         setSelectedBook(null)
     }
