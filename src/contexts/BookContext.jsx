@@ -1,4 +1,4 @@
-import { createContext } from "react"
+import { createContext, useState } from "react"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 export const BookContext = createContext()
@@ -7,7 +7,7 @@ export function BookProvider({ children }) {
     // primary book database
     const [books, setBooks] = useLocalStorage("books")
     // selected book, used for adding to db
-    const [selectedBook, setSelectedBook] = useLocalStorage("selectedBook", null)
+    const [selectedBook, setSelectedBook] = useState(null)
 
     function addBook(book, review) {
         setBooks((prev) => [...prev, { book: book, review: review }])
