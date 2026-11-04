@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { BookContext } from "../contexts/BookContext"
 import { useContext } from "react"
 import Navbar from "../components/Navbar"
@@ -7,15 +7,26 @@ export default function BookInfo() {
     /* Full card containing book information (cover, title, author, publishing date, etc),
     date read by user, rating in stars, summary of review, and full review. */
 
-    const { books } = useContext(BookContext)
+    const navigate = useNavigate()
+
+    const { books, deleteBook } = useContext(BookContext)
     const { id } = useParams()
-    const book = books.find(book => book.id == id)
+    const book = books.find(book => book.id == id) || null
+
+    // guardrail to protect from rendering undefined objects during deletion
+    if (!book) return null
 
     // image will have coverId OR imageSrc but not both.
     // If imageSrc is blank, render null instead of empty string to prevent errors
     const COVER_URL = "https://covers.openlibrary.org/b/id"
     const imageSrc = book.coverId ? `${COVER_URL}/${book.coverId}-M.jpg` : (book.imageSrc ? book.imageSrc : null)
 
+    const handleDelete = async () => {
+        // navigate away immediately to avoid rendering blank screen
+        navigate("/", { replace: true })
+        // delete triggers in background 
+        await deleteBook(book)
+    }
 
     return (
         <>
@@ -29,6 +40,7 @@ export default function BookInfo() {
                 <p>{book.reviewSummary}</p>
                 <p>{book.review}</p>
             </div>
+            <button onClick={handleDelete}>Delete</button>
         </>
     )
 }

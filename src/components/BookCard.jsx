@@ -10,7 +10,7 @@ export default function BookCard({ book }) {
 
     const navigate = useNavigate()
 
-    const handleClick = (e) => {
+    const handleClick = () => {
         navigate(`/book/${book.id}`)
     }
 
