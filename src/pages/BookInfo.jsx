@@ -36,7 +36,7 @@ export default function BookInfo() {
                 <h2>{book.title}</h2>
                 <h3>{book.author}</h3>
                 <p>Published {book.published}</p>
-                <h4>{'★'.repeat(book.stars) + '☆'.repeat(5 - book.stars)}</h4>
+                <h4>{"★".repeat(book.stars) + "☆".repeat(5 - book.stars)}</h4>
                 <p>{book.reviewSummary}</p>
                 <p>{book.review}</p>
             </div>

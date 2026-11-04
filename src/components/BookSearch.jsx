@@ -9,7 +9,7 @@ export default function BookSearch() {
     // empty search on component load
     useEffect(() => {
         setSearch("")
-    }, [])
+    }, [setSearch])
 
     return (
         <>

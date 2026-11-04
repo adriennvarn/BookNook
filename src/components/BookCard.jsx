@@ -19,7 +19,7 @@ export default function BookCard({ book }) {
             <img src={imageSrc} alt={`Cover of ${book.title}`} />
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
-            <h4>{'★'.repeat(book.stars) + '☆'.repeat(5 - book.stars)}</h4>
+            <h4>{"★".repeat(book.stars) + "☆".repeat(5 - book.stars)}</h4>
             <p>{book.reviewSummary}</p>
         </div>
     )
