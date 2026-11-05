@@ -62,22 +62,63 @@ export default function ApiSearch() {
         }
     }
 
+    const inputFormatting = "peer mt-0.5 w-sm rounded border-gray-300 shadow-sm sm:text-sm p-1 bg-white"
+    const spanFormatting = "absolute inset-y-1 start-3 px-0.5 text-sm font-medium text-gray-700 transition-transform peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-7"
+
     return (
-        <>
+        <div className="mt-10">
             <div>
-                <form id="api-search-form" onSubmit={handleSubmit}>
-                    <input type="text" name="title" placeholder="Title" value={searchData.title} onChange={handleChange} />
-                    <input type="text" name="author" placeholder="Author" value={searchData.author} onChange={handleChange} />
-                    <button type="submit">Search</button>
+                <form id="api-search-form" onSubmit={handleSubmit} className="flex justify-center gap-4">
+                    <label htmlFor="title" className="relative">
+                        <input type="text" name="title" id="title" value={searchData.title} onChange={handleChange}
+                            className={inputFormatting} />
+                        <span className={spanFormatting}>Title</span>
+                    </label>
+                    <label htmlFor="author" className="relative">
+                        <input type="text" name="author" value={searchData.author} onChange={handleChange}
+                            className={inputFormatting} />
+                        <span className={spanFormatting}>Author</span>
+                    </label>
+                    <button type="submit" className="inline-flex items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Search</button>
                 </form>
             </div>
-            <div id="search-loading" className={`${loading ? "" : "hidden"}`}><p>Loading...</p></div>
-            <div id="search-error" className={`${error ? "": "hidden"}`}><p>Error: {error}</p></div>
-            <div id="results" className={`${data ? "" : "hidden"}`}>
-                {books.map((book) => (
-                    <Result key={book.id} book={book} />
-                ))}
+            <div id="search-loading" className={`${loading ? "" : "hidden"}`}>
+                <div class="text-center mt-6" role="status">
+                    <svg
+                        class="mx-auto size-8 animate-spin text-gray-600"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            class="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="4"
+                        ></circle>
+
+                        <path
+                            class="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                    </svg>
+
+                    <p class="mt-2 font-medium text-gray-700">Loading...</p>
+                </div>
             </div>
-        </>
+            <div id="search-error" className={`${error ? "" : "hidden"} pt-3 pb-1`}>
+                <p className="text-red-700 text-lg"><b>Error:</b> {error}</p>
+                <p className="text-gray-900">Please try again later, or click the button below to use manual entry.</p>
+            </div>
+            <div id="results" className={`${data ? "" : "hidden"}`}>
+                {(books.length > 0) ? books.map((book) => (
+                    <Result key={book.id} book={book} />
+                )) : <p className="pt-4">Your search returned no results. Please try again or use manual entry.</p>}
+            </div>
+        </div>
     )
 }
