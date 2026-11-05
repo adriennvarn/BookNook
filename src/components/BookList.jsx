@@ -18,7 +18,7 @@ export default function BookList() {
         <>
             <BookSearch />
             <div className="mt-6 lg:col-span-3 lg:mt-0">
-                <div className="grid grid-cols-2 gap-x-16 gap-y-8 sm:grid-cols-4">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
                     {filteredBooks.map(book => (<BookCard key={book.id} book={book} />))}
                 </div>
             </div>

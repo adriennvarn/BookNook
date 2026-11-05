@@ -7,7 +7,7 @@ export default function BookCard({ book }) {
     const imageSrc = book.coverId ? `${COVER_URL}/${book.coverId}-M.jpg` : (book.imageSrc ? book.imageSrc : null)
 
     return (
-        <div className="p-4 border-1 border-gray-300 rounded-xl">
+        <div className="p-4 border-1 border-gray-400 rounded-xl">
             <a href={`/book/${book.id}`} className="flex flex-col text-center h-full">
                 <img src={imageSrc} alt={`Cover of ${book.title}`} className="h-full aspect-2/3 object-cover rounded-md grow" />
                 <div className="flex-none grow-0">

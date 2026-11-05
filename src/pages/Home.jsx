@@ -5,8 +5,8 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <div className="mx-16">
-                <h1>HOME</h1>
+            <div className="m-16 mt-3">
+                <h2 className="text-center text-2xl font-bold text-gray-800">Your Book Reviews</h2>
                 <BookList />
             </div>
         </>
