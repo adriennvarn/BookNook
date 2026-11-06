@@ -62,22 +62,22 @@ export default function ApiSearch() {
         }
     }
 
-    const inputFormatting = "peer mt-0.5 w-sm rounded border-gray-300 shadow-sm sm:text-sm p-1 bg-white"
-    const spanFormatting = "absolute inset-y-1 start-3 px-0.5 text-sm font-medium text-gray-700 transition-transform peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-7"
+    const inputFormatting = "mt-0.5 w-full p-2 pl-3 rounded border-gray-300 shadow-sm sm:text-sm"
+    const spanFormatting = "text-sm font-medium text-gray-700"
 
     return (
         <div className="mt-10">
             <div>
                 <form id="api-search-form" onSubmit={handleSubmit} className="flex justify-center gap-4">
                     <label htmlFor="title" className="relative">
+                        <span className={spanFormatting}>Title</span>
                         <input type="text" name="title" id="title" value={searchData.title} onChange={handleChange}
                             className={inputFormatting} />
-                        <span className={spanFormatting}>Title</span>
                     </label>
                     <label htmlFor="author" className="relative">
+                        <span className={spanFormatting}>Author</span>
                         <input type="text" name="author" value={searchData.author} onChange={handleChange}
                             className={inputFormatting} />
-                        <span className={spanFormatting}>Author</span>
                     </label>
                     <button type="submit" className="inline-flex items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Search</button>
                 </form>
