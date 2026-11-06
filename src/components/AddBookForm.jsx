@@ -85,11 +85,11 @@ export default function AddBookForm() {
                         </tr>
                         <tr className={trFormatting}>
                             <td className={spanFormatting}>Rating</td>
-                            <td><div class="flex items-center gap-1">
-                                <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
+                            <td><div className="flex items-center gap-1">
+                                <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
                                     -
                                 </button><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className="h-10 w-3 rounded-sm border-gray-200 text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-                                <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                                <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
                                     onClick={handleIncrement}>
                                     +
                                 </button>
