@@ -19,7 +19,7 @@ export default function BookInfo() {
     // image will have coverId OR imageSrc but not both.
     // If imageSrc is blank, render null instead of empty string to prevent errors
     const COVER_URL = "https://covers.openlibrary.org/b/id"
-    const imageSrc = book.coverId ? `${COVER_URL}/${book.coverId}-M.jpg` : (book.imageSrc ? book.imageSrc : null)
+    const imageSrc = book.coverId ? `${COVER_URL}/${book.coverId}-L.jpg` : (book.imageSrc ? book.imageSrc : null)
 
     const handleDelete = async () => {
         // navigate away immediately to avoid rendering blank screen
@@ -28,20 +28,28 @@ export default function BookInfo() {
         await deleteBook(book)
     }
 
+
+    const btFormatting = "inline-flex items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none"
+    const textFormatting = "mt-2 text-gray-800 self-center w-fit max-w-xl"
+    
     return (
         <>
             <Navbar />
-            <div>
-                <img src={imageSrc} alt={`Cover of ${book.title}`} />
-                <h2>{book.title}</h2>
-                <h3>{book.author}</h3>
-                <p>Published {book.published}</p>
-                <h4>{"★".repeat(book.stars) + "☆".repeat(5 - book.stars)}</h4>
-                <p>{book.reviewSummary}</p>
-                <p>{book.review}</p>
+            <div className="m-16 mt-3 flex flex-col items-center text-center">
+                <div className="flex flex-col items-center">
+                    <img src={imageSrc} alt={`Cover of ${book.title}`} className="max-w-xl"/>
+                    <h2 className="mt-4 md:text-2xl font-semibold text-gray-900 sm:text-xl">{book.title}</h2>
+                    <h2 className="mt-0 text-lg text-gray-800">{book.author}</h2>
+                    <p className="mt-0 text-sm text-gray-800">Published {book.published}</p>
+                    <h4 className="text-xl text-gray-900">{"★".repeat(book.stars) + "☆".repeat(5 - book.stars)}</h4>
+                    <p className={textFormatting}>{book.reviewSummary}</p>
+                    <p className={textFormatting}>{book.review}</p>
+                </div>
+                <div className="mt-5 flex gap-2"> 
+                    <button onClick={handleDelete} className={btFormatting}>Delete</button>
+                    <button onClick={() => navigate(`/book/edit/${id}`)} className={btFormatting}>Update Review</button>
+                </div>
             </div>
-            <button onClick={handleDelete}>Delete</button>
-            <button onClick={() => navigate(`/book/edit/${id}`)}>Update Review</button>
         </>
     )
 }
