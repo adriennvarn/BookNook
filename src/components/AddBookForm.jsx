@@ -37,6 +37,20 @@ export default function AddBookForm() {
         }))
     }
 
+    // increment and decrement buttons for rating in stars
+    const handleIncrement = (e) => {
+        setEntryData((prevData) => ({
+            ...prevData,
+            stars: (prevData.stars >= 5) ? 5 : ((prevData.stars < 1) ? 1 : prevData.stars + 1)
+        }))
+    }
+    const handleDecrement = (e) => {
+        setEntryData((prevData) => ({
+            ...prevData,
+            stars: (prevData.stars > 5) ? 5 : ((prevData.stars <= 1) ? 1 : prevData.stars - 1)
+        }))
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         addBook({ ...entryData, id: crypto.randomUUID() })
@@ -71,7 +85,16 @@ export default function AddBookForm() {
                         </tr>
                         <tr className={trFormatting}>
                             <td className={spanFormatting}>Rating</td>
-                            <td><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className={inputFormatting} /></td>
+                            <td><div class="flex items-center gap-1">
+                                <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
+                                    -
+                                </button><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className="h-10 w-3 rounded-sm border-gray-200 text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                                <button type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                                    onClick={handleIncrement}>
+                                    +
+                                </button>
+                            </div>
+                            </td>
                         </tr>
                         <tr className={trFormatting}>
                             <td className={spanFormatting}>Review summary</td>
