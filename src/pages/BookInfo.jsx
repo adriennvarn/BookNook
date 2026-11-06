@@ -29,15 +29,15 @@ export default function BookInfo() {
     }
 
 
-    const btFormatting = "inline-flex items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none"
+    const btFormatting = "inline-flex items-center justify-center rounded-2xl border border-dark bg-light/80 mt-2 px-4 py-1 text-sm font-semibold text-very-dark shadow-sm transition-colors hover:bg-bright/80 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none"
     const textFormatting = "mt-2 text-gray-800 self-center w-fit max-w-xl"
     
     return (
         <>
             <Navbar />
-            <div className="m-16 mt-3 flex flex-col items-center text-center">
+            <div className="p-16 pt-3 flex flex-col items-center text-center bg-light/40 min-h-svh">
                 <div className="flex flex-col items-center">
-                    <img src={imageSrc} alt={`Cover of ${book.title}`} className="max-w-xl"/>
+                    <img src={imageSrc} alt={`Cover of ${book.title}`} className="max-w-xl rounded-md"/>
                     <h2 className="mt-4 md:text-2xl font-semibold text-gray-900 sm:text-xl">{book.title}</h2>
                     <h2 className="mt-0 text-lg text-gray-800">{book.author}</h2>
                     <p className="mt-0 text-sm text-gray-800">Published {book.published}</p>

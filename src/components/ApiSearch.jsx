@@ -62,8 +62,8 @@ export default function ApiSearch() {
         }
     }
 
-    const inputFormatting = "mt-0.5 w-full p-2 pl-3 rounded border-gray-300 shadow-sm sm:text-sm"
-    const spanFormatting = "text-sm font-medium text-gray-700"
+    const inputFormatting = "mt-0.5 w-full p-2 pl-3 rounded border-gray-300 bg-white/70 shadow-sm sm:text-sm"
+    const spanFormatting = "text-sm font-medium text-gray-900"
 
     return (
         <div className="mt-10">
@@ -79,7 +79,7 @@ export default function ApiSearch() {
                         <input type="text" name="author" value={searchData.author} onChange={handleChange}
                             className={inputFormatting} />
                     </label>
-                    <button type="submit" className="inline-flex items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Search</button>
+                    <button type="submit" className="inline-flex items-center justify-center rounded-2xl border border-dark bg-light/80 mt-2 px-4 py-1 text-sm font-semibold text-very-dark shadow-sm transition-colors hover:bg-bright/80 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Search</button>
                 </form>
             </div>
             <div id="search-loading" className={`${loading ? "" : "hidden"}`}>

@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+    --color-light: #bdddfc;
+    --color-bright: #88bdf2;
+    --color-dim: #6a89a7;
+    --color-dark: #384959;
+    --color-very-dark: #1c252e;
+}
+
 .hidden {
     display: none;
 }

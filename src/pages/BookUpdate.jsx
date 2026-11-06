@@ -51,16 +51,16 @@ export default function BookUpdate() {
         }))
     }
 
-    const inputFormatting = "m-3/2 w-full p-2 pl-3 rounded border-gray-300 shadow-sm sm:text-sm"
-    const spanFormatting = "px-4 text-sm font-medium text-gray-700 text-right"
-    const trFormatting = "*:text-gray-900 *:first:font-medium"
+    const inputFormatting = "m-3/2 w-full p-2 pl-3 rounded border-gray-800 bg-white/70 shadow-sm sm:text-sm"
+    const spanFormatting = "px-4 text-sm font-medium text-black text-right"
+    const trFormatting = "*:p-1 *:text-black *:first:font-medium"
 
     return (
         <>
             <Navbar />
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center bg-light/40 min-h-svh pt-6">
                 <div>
-                    <img src={imageSrc} alt={`Cover of ${book.title}`} />
+                    <img src={imageSrc} alt={`Cover of ${book.title}`} className="rounded-md" />
                     <h3 className="mt-4 md:text-2xl font-semibold text-gray-900 sm:text-xl">{book.title}</h3>
                 </div>
                 <form onSubmit={handleSubmit} className="flex flex-col items-center">
@@ -69,13 +69,15 @@ export default function BookUpdate() {
                             <tr className={trFormatting}>
                                 <td className={spanFormatting}>Rating</td>
                                 <td><div className="flex items-center gap-1">
-                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
-                                        -
-                                    </button><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className="h-10 w-3 rounded-sm border-gray-200 text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
-                                        onClick={handleIncrement}>
-                                        +
-                                    </button>
+                                    <div className="bg-white/70 rounded border-gray-800 shadow-sm mb-1">
+                                        <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
+                                            -
+                                        </button><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className="h-10 w-3 rounded-sm border-gray-200 text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                                        <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                                            onClick={handleIncrement}>
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                                 </td>
                             </tr>
@@ -90,7 +92,7 @@ export default function BookUpdate() {
                         </tbody>
                     </table>
 
-                    <button type="submit" className="inline-flex w-fit my-4 items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Submit</button>
+                    <button type="submit" className="inline-flex items-center justify-center rounded-2xl border border-dark bg-light/80 mt-2 px-4 py-1 text-sm font-semibold text-very-dark shadow-sm transition-colors hover:bg-bright/80 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Submit</button>
                 </form>
             </div>
         </>

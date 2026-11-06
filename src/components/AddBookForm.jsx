@@ -57,9 +57,9 @@ export default function AddBookForm() {
         navigate("/")
     }
 
-    const inputFormatting = "m-3/2 w-full p-2 pl-3 rounded border-gray-300 shadow-sm sm:text-sm"
+    const inputFormatting = "m-3/2 w-full p-2 pl-3 rounded border-gray-300 bg-white/70 shadow-sm sm:text-sm"
     const spanFormatting = "px-4 text-sm font-medium text-gray-700 text-right"
-    const trFormatting = "*:text-gray-900 *:first:font-medium"
+    const trFormatting = "*:p-1 *:text-gray-900 *:first:font-medium"
 
     return (
         <div className="flex flex-col items-center">
@@ -86,13 +86,15 @@ export default function AddBookForm() {
                         <tr className={trFormatting}>
                             <td className={spanFormatting}>Rating</td>
                             <td><div className="flex items-center gap-1">
-                                <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
-                                    -
-                                </button><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className="h-10 w-3 rounded-sm border-gray-200 text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-                                <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
-                                    onClick={handleIncrement}>
-                                    +
-                                </button>
+                                <div className="bg-white/70 rounded border-gray-800 shadow-sm mb-1">
+                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={handleDecrement}>
+                                        -
+                                    </button><input type="number" name="stars" value={entryData.stars} onChange={handleChange} min="1" max="5" step="1" className="h-10 w-3 rounded-sm border-gray-200 text-center [-moz-appearance:textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                                        onClick={handleIncrement}>
+                                        +
+                                    </button>
+                                </div>
                             </div>
                             </td>
                         </tr>
@@ -107,7 +109,7 @@ export default function AddBookForm() {
                     </tbody>
                 </table>
 
-                <button type="submit" className="inline-flex w-fit my-4 items-center justify-center rounded-2xl border border-gray-600 bg-gray-100 px-4 py-1 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Submit</button>
+                <button type="submit" className="inline-flex items-center justify-center rounded-2xl border border-dark bg-light/80 mt-2 px-4 py-1 text-sm font-semibold text-very-dark shadow-sm transition-colors hover:bg-bright/80 focus-visible:ring-4 focus-visible:ring-gray-200 focus-visible:outline-none">Submit</button>
             </form>
         </div>
     )
