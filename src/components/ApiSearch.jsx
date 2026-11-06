@@ -114,10 +114,12 @@ export default function ApiSearch() {
                 <p className="text-red-700 text-lg"><b>Error:</b> {error}</p>
                 <p className="text-gray-900">Please try again later, or click the button below to use manual entry.</p>
             </div>
-            <div id="results" className={`${data ? "" : "hidden"}`}>
-                {(books.length > 0) ? books.map((book) => (
-                    <Result key={book.id} book={book} />
-                )) : <p className="pt-4">Your search returned no results. Please try again or use manual entry.</p>}
+            <div id="results" className={`${data ? "" : "hidden"} mt-6 lg:col-span-3 flex w-full justify-center`}>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 flex justify-evenly">
+                    {(books.length > 0) ? books.map((book) => (
+                        <Result key={book.id} book={book} />
+                    )) : <p className="pt-4">Your search returned no results. Please try again or use manual entry.</p>}
+                </div>
             </div>
         </div>
     )
